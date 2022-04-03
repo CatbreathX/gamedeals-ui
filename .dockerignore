@@ -1,0 +1,6 @@
+**/.git
+.idea
+.yarn
+dist
+node_modules
+package-lock.json
