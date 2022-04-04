@@ -43,8 +43,8 @@ describe('StoreFilter', () => {
     const inputText = await screen.findByRole('combobox');
     userEvent.type(inputText, '{arrowdown}{arrowdown}{enter}');
 
-    const submit = await screen.findByRole('button', { name: 'submit' });
-    userEvent.type(submit, '{enter}');
+    const searchButton = await screen.findByRole('button', { name: 'submit' });
+    userEvent.type(searchButton, '{enter}');
 
     await waitFor(() => {
       expect(mockFormSubmitted).toHaveBeenCalledWith({ store: '1' });

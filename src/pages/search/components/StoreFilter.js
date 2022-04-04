@@ -13,31 +13,39 @@ export const StoreFilter = () => {
 
   if (!isSuccess) return null;
 
+  const options = createOptions(data);
+
   return (
     <>
       {isSuccess &&
         <Controller
           control={control}
-          render={({ field }) => (
-            <Autocomplete
-              sx={{
-                width: 350,
-              }}
-              disablePortal
-              id="store-filter"
-              options={createOptions(data)}
-              isOptionEqualToValue={(option, value) => option.value === value.value}
-              renderInput={(params) => (
-                <TextField
-                  {...params}
-                  label="Filter Store"
-                />
-              )}
-              onChange={(e, item) => {
-                field.onChange(item?.value);
-              }}
-            />
-          )}
+          render={({ field }) => {
+            const selectedOption = options.filter((o) => o.value === `${field.value}`);
+            const selectedValue = (selectedOption.length && selectedOption[0]) || null;
+
+            return (
+              <Autocomplete
+                sx={{
+                  width: 350,
+                }}
+                disablePortal
+                id="store-filter"
+                value={selectedValue}
+                options={createOptions(data)}
+                isOptionEqualToValue={(option, value) => option.value === value.value}
+                renderInput={(params) => (
+                  <TextField
+                    {...params}
+                    label="Filter Store"
+                  />
+                )}
+                onChange={(e, item) => {
+                  field.onChange(item?.value);
+                }}
+              />
+            );
+          }}
           name="store"
         />
       }

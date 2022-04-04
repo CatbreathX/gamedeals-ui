@@ -65,7 +65,7 @@ describe('index', () => {
     userEvent.click(filterStore);
     userEvent.type(filterStore, 'Steam{arrowdown}{enter}');
 
-    const submit = screen.getByRole('button', { name: /submit/i });
+    const submit = screen.getByRole('button', { name: 'Search' });
     userEvent.click(submit);
 
     const progressBar = await screen.findByRole('progressbar');
@@ -100,5 +100,10 @@ describe('index', () => {
 
     const previousPage = within(pagination).getByRole('button', { name: /goto previous page/i });
     expect(previousPage).toBeEnabled();
+  });
+
+  test('should reset all filters', () => {
+    // todo: implement test.
+    // todo: exact match
   });
 });

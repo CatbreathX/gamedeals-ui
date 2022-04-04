@@ -10,12 +10,14 @@ import { FormProvider, useForm } from 'react-hook-form';
 
 export const SearchCriteria = ({ handleFormSubmission }) => {
   const formMethods = useForm();
-  const {
-    handleSubmit,
-  } = formMethods;
+  const { handleSubmit, reset } = formMethods;
 
   const onFormSubmit = (data) => {
     handleFormSubmission(data);
+  };
+
+  const resetForm = () => {
+    reset({ title: '', store: '', exactTitle: 0 });
   };
 
   return (
@@ -30,8 +32,8 @@ export const SearchCriteria = ({ handleFormSubmission }) => {
           <TitleFilter />
         </FilterContainer>
         <FilterActions>
-          <Button type="submit">Submit</Button>
-          <Button type="button">Clear</Button>
+          <Button type="submit">Search</Button>
+          <Button type="button" onClick={resetForm}>Clear</Button>
         </FilterActions>
       </Form>
     </FormProvider>
