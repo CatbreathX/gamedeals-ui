@@ -22,7 +22,7 @@ module.exports = merge(common, {
     hot: true,
     port: 3000,
     proxy: {
-      '/v1': {
+      '/': {
         target: 'http://localhost:8080',
         secure: false,
       },
