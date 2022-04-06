@@ -17,7 +17,9 @@ export const SearchCriteria = ({ handleFormSubmission }) => {
   };
 
   const resetForm = () => {
-    reset({ title: '', store: '', exactTitle: 0 });
+    reset({
+      title: '', store: '', gameRatingFilter: '', exactTitle: 'false',
+    });
   };
 
   return (

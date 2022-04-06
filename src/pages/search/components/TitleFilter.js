@@ -15,9 +15,11 @@ export const TitleFilter = () => {
           <Controller
             control={control}
             name="exactTitle"
-            render={({ field }) => (
-              <Checkbox {...field} />
-            )}
+            render={({ field }) => {
+              const isChecked = field.value === true;
+              return <Checkbox {...field} checked={isChecked} />;
+            }
+            }
           />
         }
         label="Exact Match"
