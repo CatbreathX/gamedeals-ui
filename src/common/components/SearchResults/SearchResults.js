@@ -1,4 +1,7 @@
 import { formatString } from 'common/components/SearchResults/formatters';
+import {
+  Table, TableHeadingTr, Td, Th, Tr,
+} from 'common/components/SearchResults/layout/styles';
 import { LoadingArea } from 'common/elements/LoadingArea';
 import { camelCase } from 'lodash/string';
 import PropTypes from 'prop-types';
@@ -30,20 +33,20 @@ export const SearchResults = ({
       }
 
       {pagination}
-      <table>
+      <Table>
         <thead>
-          <tr>
+          <TableHeadingTr>
             {columns.map((column, i) => (
-              <th
+              <Th
                 key={column.header}
                 onClick={() => {
                   onHeaderClicked(column.header, i);
                 }}
               >
                 {column.header}
-              </th>
+              </Th>
             ))}
-          </tr>
+          </TableHeadingTr>
         </thead>
         <tbody>
           {isError &&
@@ -62,14 +65,14 @@ export const SearchResults = ({
             dataset.map((row, rowIndex) => renderRow(columns, row, rowIndex, dataRowClicked))
           }
         </tbody>
-      </table>
+      </Table>
       {!isLoading && pagination}
     </LoadingArea>
   );
 };
 
 SearchResults.propTypes = {
-  dataset: PropTypes.arrayOf(PropTypes.object),
+  dataset: PropTypes.instanceOf(Array),
   isLoading: PropTypes.bool.isRequired,
   isError: PropTypes.bool.isRequired,
   isSuccess: PropTypes.bool.isRequired,
@@ -102,14 +105,18 @@ const renderNoResults = (columns) => (
   </tr>
 );
 
-const renderRow = (columns, row, rowIndex, dataRowClicked) => (
-  <tr
-    key={`row-${rowIndex}`}
-    onClick={() => dataRowClicked(rowIndex)}
-  >
-    {renderColumns(columns, row, rowIndex)}
-  </tr>
-);
+const renderRow = (columns, row, rowIndex, dataRowClicked) => {
+  const isEven = rowIndex % 2 === 0;
+  return (
+    <Tr
+      even={isEven}
+      key={`row-${rowIndex}`}
+      onClick={() => dataRowClicked(rowIndex)}
+    >
+      {renderColumns(columns, row, rowIndex)}
+    </Tr>
+  );
+};
 
 const renderColumns = (columns, rowData, rowIndex) => columns.map((column, columnIndex) => {
   const value = rowData[column.accessor];
@@ -118,8 +125,8 @@ const renderColumns = (columns, rowData, rowIndex) => columns.map((column, colum
   const key = `column-${value}-${rowIndex}-${columnIndex}`;
 
   return (
-    <td key={key}>
+    <Td key={key}>
       {formattedValue}
-    </td>
+    </Td>
   );
 });
