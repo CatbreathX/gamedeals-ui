@@ -1,13 +1,18 @@
 import { formatString } from 'common/components/SearchResults/formatters';
 import {
-  Table, TableHeadingTr, Td, Th, Tr,
+  CircularProgressSpinner,
+  ProgressContainer,
+  Table,
+  TableHeadingTr,
+  Td,
+  Th,
+  Tr,
 } from 'common/components/SearchResults/layout/styles';
-import { LoadingArea } from 'common/elements/LoadingArea';
 import { camelCase } from 'lodash/string';
 import PropTypes from 'prop-types';
-import { SpinnerCircular } from 'spinners-react';
 
-const noop = () => {};
+const noop = () => {
+};
 
 export const SearchResults = ({
   columns,
@@ -25,11 +30,11 @@ export const SearchResults = ({
   };
 
   return (
-    <LoadingArea isLoading={isLoading}>
+    <>
       {isLoading &&
-        <div role="progressbar" className="search-results__loading">
-          <SpinnerCircular />
-        </div>
+        <ProgressContainer>
+          <CircularProgressSpinner />
+        </ProgressContainer>
       }
 
       {pagination}
@@ -59,15 +64,15 @@ export const SearchResults = ({
           }
 
           {isSuccess && dataset.length === 0 &&
-            renderNoResults(columns)
+          renderNoResults(columns)
           }
           {isSuccess && dataset.length > 0 &&
-            dataset.map((row, rowIndex) => renderRow(columns, row, rowIndex, dataRowClicked))
+          dataset.map((row, rowIndex) => renderRow(columns, row, rowIndex, dataRowClicked))
           }
         </tbody>
       </Table>
       {!isLoading && pagination}
-    </LoadingArea>
+    </>
   );
 };
 
