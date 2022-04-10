@@ -1,7 +1,8 @@
 # Game Deals
 
 Demo Application for ReduxToolkit Query and React Hooks, using CheapShark API:
-`https://apidocs.cheapshark.com/`
+
+[https://apidocs.cheapshark.com/](https://apidocs.cheapshark.com/)
 
 
 Very much Work in Progress:
