@@ -51,6 +51,11 @@ export const Search = () => {
     setSearchCriteriaFilterValues(criteria);
   };
 
+  const openDeal = (row) => {
+    const url = `https://www.cheapshark.com/redirect?dealID=${row.dealID}`;
+    window.open(url, '_blank', 'noreferrer noopener');
+  };
+
   return (
     <>
       <SearchCriteriaContainer>
@@ -59,7 +64,7 @@ export const Search = () => {
       <SearchResultsContainer>
         <SearchResults
           dataset={data?.results}
-          dataRowClicked={noop}
+          dataRowClicked={openDeal}
           isLoading={isFetching}
           isSuccess={isSuccess}
           isError={isError}

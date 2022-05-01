@@ -65,7 +65,8 @@ describe('Search Results', () => {
     );
     const dataRows = screen.getAllByRole('row');
     userEvent.click(dataRows[2]);
-    expect(mockDataRowClicked).toHaveBeenCalledWith(1);
+    const expectedParams = dataset.data[1];
+    expect(mockDataRowClicked).toHaveBeenCalledWith(expectedParams);
   });
 });
 

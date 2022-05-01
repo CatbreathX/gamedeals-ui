@@ -116,7 +116,7 @@ const renderRow = (columns, row, rowIndex, dataRowClicked) => {
     <Tr
       even={isEven}
       key={`row-${rowIndex}`}
-      onClick={() => dataRowClicked(rowIndex)}
+      onClick={() => dataRowClicked(row)}
     >
       {renderColumns(columns, row, rowIndex)}
     </Tr>

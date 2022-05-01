@@ -18,6 +18,7 @@ export const TableHeadingTr = styled.tr`
 
 export const Tr = styled.tr`
   background-color: ${props => (props.even ? 'inherit' : 'lightblue')};
+  cursor: pointer;
 `;
 
 export const Td = styled.td`
