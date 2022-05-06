@@ -110,18 +110,14 @@ const renderNoResults = (columns) => (
   </tr>
 );
 
-const renderRow = (columns, row, rowIndex, dataRowClicked) => {
-  const isEven = rowIndex % 2 === 0;
-  return (
-    <Tr
-      even={isEven}
-      key={`row-${rowIndex}`}
-      onClick={() => dataRowClicked(row)}
-    >
-      {renderColumns(columns, row, rowIndex)}
-    </Tr>
-  );
-};
+const renderRow = (columns, row, rowIndex, dataRowClicked) => (
+  <Tr
+    key={`row-${rowIndex}`}
+    onClick={() => dataRowClicked(row)}
+  >
+    {renderColumns(columns, row, rowIndex)}
+  </Tr>
+);
 
 const renderColumns = (columns, rowData, rowIndex) => columns.map((column, columnIndex) => {
   const value = rowData[column.accessor];

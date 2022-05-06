@@ -1,8 +1,8 @@
 import styled from '@emotion/styled';
 
 export const AppContainer = styled.div`
-  display:flex;
+  display: flex;
   gap: 10px;
   flex-wrap: nowrap;
-  height: 100%; 
+  height: 100%;
 `;

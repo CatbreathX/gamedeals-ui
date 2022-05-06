@@ -1,5 +1,6 @@
 import styled from '@emotion/styled';
 import { Box, CircularProgress } from '@mui/material';
+import { LARGE, MEDIUM } from 'common/layout/constants';
 
 export const Table = styled.table`
   border-collapse: collapse;
@@ -10,6 +11,18 @@ export const Table = styled.table`
 
 export const Th = styled.th`
   padding: 24px 24px 24px 8px;
+
+  @media screen and (max-width: ${MEDIUM}) {
+    &:nth-of-type(n+4) {
+      display: none;
+    }
+  }
+
+  @media screen and (max-width: ${LARGE}) {
+    &:nth-of-type(n+5) {
+      display: none;
+    }
+  }
 `;
 
 export const TableHeadingTr = styled.tr`
@@ -17,12 +30,28 @@ export const TableHeadingTr = styled.tr`
 `;
 
 export const Tr = styled.tr`
-  background-color: ${props => (props.even ? 'inherit' : 'lightblue')};
   cursor: pointer;
+  background-color: inherit;
+  
+  :nth-of-type(even) {
+    background-color: lightblue;
+  }
 `;
 
 export const Td = styled.td`
   padding: 8px 24px 8px 8px;
+
+  @media screen and (max-width: ${MEDIUM}) {
+    &:nth-of-type(n+4) {
+      display: none;
+    }
+  }
+
+  @media screen and (max-width: ${LARGE}) {
+    &:nth-of-type(n+5) {
+      display: none;
+    }
+  }
 `;
 
 export const ProgressContainer = styled(Box)`
