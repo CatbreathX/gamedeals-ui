@@ -7,7 +7,8 @@ import { SearchResultsContainer } from 'pages/search/layout/SearchResultsContain
 import { useState } from 'react';
 import { useGetDealsQuery, useGetStoresQuery } from 'services/gamedealapi';
 
-const noop = () => {};
+const noop = () => {
+};
 
 export const Search = () => {
   const [pageNumber, setPageNumber] = useState(1);

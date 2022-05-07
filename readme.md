@@ -32,3 +32,9 @@ Served on http://localhost:3000
 Run all tests:
 
 `yarn test`
+
+
+## Git Precommit hooks
+
+Precommit hooks will run eslint upon git commit.
+

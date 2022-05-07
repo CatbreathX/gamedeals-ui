@@ -11,13 +11,14 @@ export const ReactHookFormSelect = ({
   ...props
 }) => {
   const labelId = `${name}-label`;
+
   return (
     <FormControl {...props}>
       <InputLabel id={labelId}>{label}</InputLabel>
       <Controller
         render={({ field }) => (
           <Select
-            {... field}
+            {...field}
             name={name}
             labelId={labelId}
             label={label}
