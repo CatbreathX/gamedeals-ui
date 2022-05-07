@@ -4,4 +4,5 @@
 /dist/
 /.git/
 /.yarn/
+.husky
 /yarn-error.log
