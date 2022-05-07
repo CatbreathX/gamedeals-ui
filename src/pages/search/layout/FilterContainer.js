@@ -1,11 +1,6 @@
 import styled from '@emotion/styled';
 import { LARGE } from 'common/layout/constants';
 
-export const SearchCriteriaBlock = styled.div`
-  display: inline-flex;
-  flex-direction: column;
-`;
-
 export const FilterContainer = styled.div`
   display: inline-flex;
   flex-direction: row;

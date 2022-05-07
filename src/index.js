@@ -30,6 +30,5 @@ ReactDOM.render(
       </AppContainer>
     </ThemeProvider>
   </Provider>,
-
   document.getElementById('app'),
 );
