@@ -1,4 +1,5 @@
 import { Pagination } from 'common/components/Pagination/Pagination';
+import { ProgressSpinner } from 'common/components/ProgressSpinner/ProgressSpinner';
 import { formatMetaCriticScore } from 'common/components/SearchResults/formatters';
 import { SearchResults } from 'common/components/SearchResults/SearchResults';
 import { SearchCriteria } from 'pages/search/components/SearchCriteria';
@@ -14,7 +15,6 @@ export const Search = () => {
   const [pageNumber, setPageNumber] = useState(1);
   const [pageSize, setPageSize] = useState(60);
   const [searchCriteriaFilterValues, setSearchCriteriaFilterValues] = useState();
-
   const {
     isError,
     isSuccess,
@@ -27,8 +27,11 @@ export const Search = () => {
   });
   const storeQuery = useGetStoresQuery();
 
-  // todo: integrate...
-  if (storeQuery.isLoading) return null;
+  if (storeQuery.isLoading) {
+    return (
+      <ProgressSpinner />
+    );
+  }
 
   const handlePageSizeChange = (value) => {
     setPageNumber(1);

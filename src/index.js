@@ -25,7 +25,6 @@ ReactDOM.render(
               },
           `}
         />
-
         <App />
       </AppContainer>
     </ThemeProvider>

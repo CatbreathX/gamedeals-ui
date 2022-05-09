@@ -1,12 +1,7 @@
+import { ProgressSpinner } from 'common/components/ProgressSpinner/ProgressSpinner';
 import { formatString } from 'common/components/SearchResults/formatters';
 import {
-  CircularProgressSpinner,
-  ProgressContainer,
-  Table,
-  TableHeadingTr,
-  Td,
-  Th,
-  Tr,
+  Table, TableHeadingTr, Td, Th, Tr,
 } from 'common/components/SearchResults/layout/styles';
 import { camelCase } from 'lodash/string';
 import PropTypes from 'prop-types';
@@ -32,9 +27,7 @@ export const SearchResults = ({
   return (
     <>
       {isLoading &&
-        <ProgressContainer>
-          <CircularProgressSpinner />
-        </ProgressContainer>
+        <ProgressSpinner delay={150} />
       }
 
       {pagination}
