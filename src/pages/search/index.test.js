@@ -1,16 +1,35 @@
-import { screen, waitForElementToBeRemoved, within } from '@testing-library/react';
+import {
+  act, screen, waitForElementToBeRemoved, within,
+} from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { Search } from 'pages/search/index';
 import { gameDealApi } from 'services/gamedealapi';
 import { mountWithStore } from 'unit/mount';
 import { setupApiStore } from 'unit/reduxStore';
+import * as timers from 'timers';
 
 describe('index', () => {
   let mockStore;
 
+  beforeAll(() => {
+    jest.useFakeTimers('legacy');
+  });
+
+  afterAll(() => {
+    jest.useRealTimers();
+  });
+
   beforeEach(async () => {
     mockStore = setupApiStore(gameDealApi);
+
+    jest.useFakeTimers('legacy');
+
+    timers.setTimeout(() => jest.runOnlyPendingTimers(), 10);
+
     await mountWithStore(<Search />, mockStore.store);
+
+    jest.advanceTimersByTime(1000);
+    jest.runAllTimers();
   });
 
   afterEach(() => {

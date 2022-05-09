@@ -1,7 +1,7 @@
+import { ProgressSpinner } from 'common/components/ProgressSpinner/ProgressSpinner';
 import { formatString } from 'common/components/SearchResults/formatters';
 import {
-  CircularProgressSpinner,
-  ProgressContainer,
+  ProgressInsideContainer,
   Table,
   TableHeadingTr,
   Td,
@@ -32,9 +32,7 @@ export const SearchResults = ({
   return (
     <>
       {isLoading &&
-        <ProgressContainer>
-          <CircularProgressSpinner />
-        </ProgressContainer>
+        <ProgressSpinner delay={150} />
       }
 
       {pagination}

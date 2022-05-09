@@ -10,7 +10,7 @@ export const StoreFilter = () => {
     data,
     isSuccess,
   } = useGetStoresQuery();
-
+  console.log('is success', isSuccess);
   if (!isSuccess) return null;
 
   const options = createOptions(data);

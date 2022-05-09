@@ -1,5 +1,4 @@
 import styled from '@emotion/styled';
-import { Box, CircularProgress } from '@mui/material';
 import { LARGE, MEDIUM } from 'common/layout/constants';
 
 export const Table = styled.table`
@@ -32,7 +31,7 @@ export const TableHeadingTr = styled.tr`
 export const Tr = styled.tr`
   cursor: pointer;
   background-color: inherit;
-  
+
   :nth-of-type(even) {
     background-color: lightblue;
   }
@@ -52,24 +51,4 @@ export const Td = styled.td`
       display: none;
     }
   }
-`;
-
-export const ProgressContainer = styled(Box)`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  z-index: 1;
-  background-color: black;
-  width: 150px;
-  height: 150px;
-  border-radius: 36px;
-  opacity: 0.6;
-`;
-
-export const CircularProgressSpinner = styled(CircularProgress)`
-  display: inline-grid;
-  justify-self: center;
 `;
