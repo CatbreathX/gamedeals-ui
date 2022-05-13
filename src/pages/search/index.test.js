@@ -21,57 +21,42 @@ describe('index', () => {
     const expectedHeaders = ['Game', 'Store', 'Sale Price', 'Normal Price', 'Metacritic Score', 'Steam Rating'];
     const actualHeaders = await screen.findAllByRole('columnheader');
 
-    expect(actualHeaders)
-      .toHaveLength(expectedHeaders.length);
+    expect(actualHeaders).toHaveLength(expectedHeaders.length);
 
     actualHeaders.forEach((actualHeader, i) => {
-      expect(actualHeader)
-        .toHaveTextContent(expectedHeaders[i]);
+      expect(actualHeader).toHaveTextContent(expectedHeaders[i]);
     });
   });
 
   test('should populate search results table', async () => {
     const actualRows = await screen.findAllByRole('row');
-    expect(actualRows)
-      .toHaveLength(61);
+    expect(actualRows).toHaveLength(61);
 
     const expectedCells = ['Deponia', 'Voidu', '1.00', '9.99', '74', 'Very Positive'];
     const firstRow = screen.getByRole('row', { name: /deponia/i });
-    const actualCells = within(firstRow)
-      .getAllByRole('cell');
-    expect(actualCells)
-      .toHaveLength(expectedCells.length);
+    const actualCells = within(firstRow).getAllByRole('cell');
+    expect(actualCells).toHaveLength(expectedCells.length);
 
     actualCells.forEach((actualCell, i) => {
-      expect(actualCell)
-        .toHaveTextContent(expectedCells[i]);
+      expect(actualCell).toHaveTextContent(expectedCells[i]);
     });
   });
 
   test('should render pagination correctly', async () => {
     const paginations = await screen.findAllByRole('navigation');
-    expect(paginations)
-      .toHaveLength(2);
+    expect(paginations).toHaveLength(2);
 
     paginations.forEach((pagination) => {
-      const rowText = within(pagination)
-        .getByText('Rows 1 to 60');
-      expect(rowText)
-        .toBeInTheDocument();
+      const rowText = within(pagination).getByText('Rows 1 to 60');
+      expect(rowText).toBeInTheDocument();
 
-      const nextPageButton = within(pagination)
-        .getByRole('button', { name: /goto next page/i });
-      expect(nextPageButton)
-        .toBeInTheDocument();
-      expect(nextPageButton)
-        .toBeEnabled();
+      const nextPageButton = within(pagination).getByRole('button', { name: /goto next page/i });
+      expect(nextPageButton).toBeInTheDocument();
+      expect(nextPageButton).toBeEnabled();
 
-      const previousPage = within(pagination)
-        .getByRole('button', { name: /goto previous page/i });
-      expect(previousPage)
-        .toBeInTheDocument();
-      expect(previousPage)
-        .toBeDisabled();
+      const previousPage = within(pagination).getByRole('button', { name: /goto previous page/i });
+      expect(previousPage).toBeInTheDocument();
+      expect(previousPage).toBeDisabled();
     });
   });
 
@@ -84,8 +69,7 @@ describe('index', () => {
     userEvent.click(submit);
 
     const progressBar = await screen.findByRole('progressbar');
-    expect(progressBar)
-      .toBeInTheDocument();
+    expect(progressBar).toBeInTheDocument();
     await waitForElementToBeRemoved(progressBar);
   });
 
@@ -101,35 +85,28 @@ describe('index', () => {
       .toBeInTheDocument();
     await waitForElementToBeRemoved(progressBar);
 
-    expect(screen.getAllByText('Rows 61 to 120'))
-      .toHaveLength(2);
-    expect(screen.getAllByRole('row'))
-      .toHaveLength(61);
+    expect(screen.getAllByText('Rows 61 to 120')).toHaveLength(2);
+    expect(screen.getAllByRole('row')).toHaveLength(61);
 
     const expectedCells = ['BLACKHOLE', 'AllYouPlay', '1.80', '8.99', '82', 'Very Positive'];
     const firstRow = screen.getAllByRole('row', { name: /BLACKHOLE/i })[0];
-    const actualCells = within(firstRow)
-      .getAllByRole('cell');
-    expect(actualCells)
-      .toHaveLength(expectedCells.length);
+    const actualCells = within(firstRow).getAllByRole('cell');
+    expect(actualCells).toHaveLength(expectedCells.length);
 
     actualCells.forEach((actualCell, i) => {
-      expect(actualCell)
-        .toHaveTextContent(expectedCells[i]);
+      expect(actualCell).toHaveTextContent(expectedCells[i]);
     });
 
     expect(nextPageButton)
       .toBeInTheDocument();
-    expect(nextPageButton)
-      .toBeDisabled();
+    expect(nextPageButton).toBeDisabled();
 
-    const previousPage = within(pagination)
-      .getByRole('button', { name: /goto previous page/i });
-    expect(previousPage)
-      .toBeEnabled();
+    const previousPage = within(pagination).getByRole('button', { name: /goto previous page/i });
+    expect(previousPage).toBeEnabled();
   });
 
   test('should reset all filters', () => {
+    expect(1).toBe(1);
     // todo: implement test.
     // todo: exact match
   });

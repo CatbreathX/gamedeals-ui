@@ -32,7 +32,7 @@ describe('StoreFilter', () => {
     userEvent.type(inputText, '{arrowdown}');
 
     expect(await screen.findByRole('option', { name: 'Epic Games' })).toBeInTheDocument();
-    expect(await screen.findByRole('option', { name: 'Steam' })).toBeInTheDocument();
+    expect(screen.getByRole('option', { name: 'Steam' })).toBeInTheDocument();
     expect(screen.queryByRole('option', { name: 'Humble Bundle' })).not.toBeInTheDocument();
   });
 

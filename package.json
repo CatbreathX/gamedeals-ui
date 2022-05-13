@@ -7,7 +7,7 @@
     "dev_build": "webpack --config webpack.dev.config.js",
     "start": "webpack serve --config webpack.dev.config.js",
     "test": "jest",
-    "lint": "eslint src",
+    "lint": "eslint .",
     "prepare": "husky install && npx husky set .husky/pre-commit \"yarn lint --fix\""
   },
   "dependencies": {

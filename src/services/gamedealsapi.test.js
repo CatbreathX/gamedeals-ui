@@ -44,9 +44,11 @@ describe('GameDealsApi', () => {
 
       test('should populate exactTitle when title is present', async () => {
         await mockStore.store.dispatch(gameDealApi.endpoints.getDeals.initiate({
-          exactTitle: 'true', title: 'elite',
+          exactTitle: 'true',
+          title: 'elite',
         }));
-        expect(requestCollector[0].url.search).toBe('?exact=1&title=elite');
+        expect(requestCollector[0].url.search)
+          .toBe('?exact=1&title=elite');
       });
 
       test('should ignore exactTitle when title is not present', async () => {
@@ -62,7 +64,10 @@ describe('GameDealsApi', () => {
       });
 
       test('should populate when multiple params used', async () => {
-        await mockStore.store.dispatch(gameDealApi.endpoints.getDeals.initiate({ storeId: 1, title: 'elite' }));
+        await mockStore.store.dispatch(gameDealApi.endpoints.getDeals.initiate({
+          storeId: 1,
+          title: 'elite',
+        }));
         expect(requestCollector[0].url.search).toBe('?exact=0&storeID=1&title=elite');
       });
     });

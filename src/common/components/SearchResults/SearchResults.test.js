@@ -24,11 +24,6 @@ describe('Search Results', () => {
     expect(screen.getByRole('cell', { name: 'No Results Found' })).toBeInTheDocument();
   });
 
-  test('should display no results found when no dataset', () => {
-    renderSearchResults({ isSuccess: true });
-    expect(screen.getByRole('cell', { name: 'No Results Found' })).toBeInTheDocument();
-  });
-
   test('should display spinner when data is loading', () => {
     renderSearchResults({ isLoading: true });
     expect(screen.getByRole('progressbar', {})).toBeInTheDocument();

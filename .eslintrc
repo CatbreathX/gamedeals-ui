@@ -2,34 +2,30 @@
   "env": {
     "browser": true,
     "es6": true,
-    "node": true,
-    "jest/globals": true
+    "jest": true,
+    "node": true
   },
   "extends": [
     "airbnb",
+    "airbnb/hooks",
     "eslint:recommended",
-    "plugin:import/errors",
-    "plugin:import/warnings",
-    "plugin:jest-dom/recommended",
-    "plugin:jsx-a11y/recommended",
-    "plugin:testing-library/react"
+    "plugin:import/recommended",
+    "plugin:jsx-a11y/recommended"
   ],
   "plugins": [
     "eslint-plugin-import",
-    "eslint-plugin-jest",
-    "eslint-plugin-testing-library",
     "jest-dom",
     "jsx-a11y",
-    "react-hooks",
-    "testing-library"
+    "react-hooks"
   ],
   "parser": "@babel/eslint-parser",
   "globals": {
     "Atomics": "readonly",
     "SharedArrayBuffer": "readonly"
   },
+  "ignorePatterns": ["*.test.js"],
   "parserOptions": {
-    "ecmaVersion": 2021,
+    "ecmaVersion": 2022,
     "sourceType": "module",
     "ecmaFeatures": {
       "jsx": true
@@ -106,5 +102,23 @@
     "react": {
       "version": "detect"
     }
-  }
+  },
+  "overrides": [
+    {
+      "env": {
+        "jest": true
+      },
+      "extends": [
+        "plugin:jest/recommended",
+        "plugin:jest/style",
+        "plugin:jest-dom/recommended",
+        "plugin:testing-library/react"
+      ],
+      "files": "**/*.test.js",
+      "plugins": [
+        "jest",
+        "testing-library"
+      ]
+    }
+  ]
 }
