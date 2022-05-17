@@ -30,8 +30,7 @@ describe('RatingFilter', () => {
     userEvent.type(button, '{arrowdown}');
     userEvent.type(screen.getAllByRole('option')[1], '{enter}');
 
-    expect(button)
-      .toHaveTextContent(ratingOptions[1]);
+    expect(button).toHaveTextContent(ratingOptions[1]);
   });
 });
 

@@ -10,7 +10,7 @@ describe('ReactHookFormSelect', () => {
     expect(screen.getByLabelText('Select Unit Test')).toBeInTheDocument();
   });
 
-  test('should render all options', () => {
+  test('should render all items in combo box', () => {
     mount();
 
     const button = screen.getByRole('button');
@@ -24,12 +24,12 @@ describe('ReactHookFormSelect', () => {
     });
   });
 
-  test('should select default value', () => {
+  test('should automatically the default item', () => {
     mount('2');
     expect(screen.getByRole('button')).toHaveTextContent('Two');
   });
 
-  test('should update with selected value', () => {
+  test('should update text input with selected value', () => {
     mount();
 
     const button = screen.getByRole('button');

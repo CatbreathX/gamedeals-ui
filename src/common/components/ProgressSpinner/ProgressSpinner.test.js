@@ -4,13 +4,10 @@ import { ProgressSpinner } from 'common/components/ProgressSpinner/ProgressSpinn
 describe('ProgressSpinner', () => {
   test('should show progress spinner', () => {
     renderComponent();
-    expect(screen.getByRole('progressbar'))
-      .toBeInTheDocument();
+    expect(screen.getByRole('progressbar')).toBeInTheDocument();
   });
 });
 
 const renderComponent = (props = {}) => {
-  render(
-    <ProgressSpinner {...props} />,
-  );
+  render(<ProgressSpinner {...props} />);
 };

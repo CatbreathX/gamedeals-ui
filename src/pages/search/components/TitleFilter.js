@@ -9,7 +9,6 @@ export const TitleFilter = () => {
 
     <TitleFilterContainer>
       <TextField type="text" label="Title" {...register('title')} />
-
       <FormControlLabel
         control={
           <Controller

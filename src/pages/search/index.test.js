@@ -76,13 +76,11 @@ describe('index', () => {
   test('should be able to goto next page', async () => {
     const paginations = await screen.findAllByRole('navigation');
     const pagination = paginations[0];
-    const nextPageButton = within(pagination)
-      .getByRole('button', { name: 'Goto next page' });
+    const nextPageButton = within(pagination).getByRole('button', { name: 'Goto next page' });
     userEvent.click(nextPageButton);
 
     const progressBar = await screen.findByRole('progressbar');
-    expect(progressBar)
-      .toBeInTheDocument();
+    expect(progressBar).toBeInTheDocument();
     await waitForElementToBeRemoved(progressBar);
 
     expect(screen.getAllByText('Rows 61 to 120')).toHaveLength(2);
@@ -97,8 +95,7 @@ describe('index', () => {
       expect(actualCell).toHaveTextContent(expectedCells[i]);
     });
 
-    expect(nextPageButton)
-      .toBeInTheDocument();
+    expect(nextPageButton).toBeInTheDocument();
     expect(nextPageButton).toBeDisabled();
 
     const previousPage = within(pagination).getByRole('button', { name: /goto previous page/i });

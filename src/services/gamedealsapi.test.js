@@ -47,8 +47,7 @@ describe('GameDealsApi', () => {
           exactTitle: 'true',
           title: 'elite',
         }));
-        expect(requestCollector[0].url.search)
-          .toBe('?exact=1&title=elite');
+        expect(requestCollector[0].url.search).toBe('?exact=1&title=elite');
       });
 
       test('should ignore exactTitle when title is not present', async () => {

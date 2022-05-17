@@ -19,7 +19,7 @@ describe('Search Results', () => {
     });
   });
 
-  test('should display no results found when no dataset', () => {
+  test('should display "no results found" when there is no data', () => {
     renderSearchResults({ isSuccess: true });
     expect(screen.getByRole('cell', { name: 'No Results Found' })).toBeInTheDocument();
   });
@@ -29,7 +29,7 @@ describe('Search Results', () => {
     expect(screen.getByRole('progressbar', {})).toBeInTheDocument();
   });
 
-  test('should display error when data is isError is True', () => {
+  test('should display error when there is an error when retrieving data', () => {
     renderSearchResults({ isError: true });
     expect(screen.getByRole('cell', {})).toHaveClass('search-results__error');
   });

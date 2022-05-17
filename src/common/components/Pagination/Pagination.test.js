@@ -6,20 +6,17 @@ import { Pagination } from 'common/components/Pagination/Pagination';
 describe('Pagination', () => {
   test('should disable previous page when on first page', () => {
     renderComponent({ pageNumber: 1 });
-    expect(screen.getByRole('button', { name: 'Goto previous page' }))
-      .toBeDisabled();
+    expect(screen.getByRole('button', { name: 'Goto previous page' })).toBeDisabled();
   });
 
   test('should render enable next page button when more pages of data', () => {
-    renderComponent({});
-    expect(screen.getByRole('button', { name: 'Goto next page' }))
-      .toBeEnabled();
+    renderComponent();
+    expect(screen.getByRole('button', { name: 'Goto next page' })).toBeEnabled();
   });
 
   test('should disable next page button when on last page', () => {
     renderComponent({ totalNumberOfPages: 1 });
-    expect(screen.getByRole('button', { name: 'Goto next page' }))
-      .toBeDisabled();
+    expect(screen.getByRole('button', { name: 'Goto next page' })).toBeDisabled();
   });
 
   test('should enable previous and next page buttons when previous and next pages exist', () => {
@@ -40,8 +37,7 @@ describe('Pagination', () => {
     });
     const nextPageButton = screen.getByRole('button', { name: 'Goto next page' });
     userEvent.click(nextPageButton);
-    expect(mockHandler)
-      .toHaveBeenCalledWith(2);
+    expect(mockHandler).toHaveBeenCalledWith(2);
   });
 
   test('should invoke previousPage handler when user clicks on previous page button', () => {
@@ -89,7 +85,7 @@ const renderComponent = ({
   pageNumber = 1,
   pageSize = 25,
   totalNumberOfPages = 99,
-}) => {
+} = {}) => {
   render(
     <Pagination
       numberOfRows={numberOfRows}

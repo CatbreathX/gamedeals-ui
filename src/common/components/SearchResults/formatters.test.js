@@ -6,8 +6,7 @@ describe('formatters', () => {
       const inputValue = 'hello world';
       const actual = formatString(inputValue);
 
-      expect(actual)
-        .toBe(inputValue);
+      expect(actual).toBe(inputValue);
     });
   });
 
@@ -21,8 +20,7 @@ describe('formatters', () => {
       expected,
     }) => {
       const actual = formatMetaCriticScore(input);
-      expect(actual)
-        .toBe(expected);
+      expect(actual).toBe(expected);
     });
   });
 });

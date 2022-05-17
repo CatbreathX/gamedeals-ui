@@ -36,7 +36,7 @@ describe('StoreFilter', () => {
     expect(screen.queryByRole('option', { name: 'Humble Bundle' })).not.toBeInTheDocument();
   });
 
-  test('should select item', async () => {
+  test('should be able to select an item', async () => {
     const mockFormSubmitted = jest.fn();
     await renderComponent(mockStore, mockFormSubmitted);
 
