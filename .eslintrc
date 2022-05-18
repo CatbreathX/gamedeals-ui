@@ -105,20 +105,23 @@
   },
   "overrides": [
     {
-      "env": {
-        "jest": true
-      },
       "extends": [
         "plugin:jest/recommended",
         "plugin:jest/style",
         "plugin:jest-dom/recommended",
         "plugin:testing-library/react"
       ],
-      "files": "**/*.test.js",
+      "files": "src/**/*.test.js",
       "plugins": [
         "jest",
         "testing-library"
       ]
+    },
+    {
+      "extends": [
+        "plugin:cypress/recommended"
+      ],
+      "files": "tests/e2e/tests/**/*.spec.js"
     }
   ]
 }
