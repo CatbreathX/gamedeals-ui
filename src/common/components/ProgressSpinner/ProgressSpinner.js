@@ -5,7 +5,7 @@ import {
 } from 'common/components/ProgressSpinner/layout/styles';
 
 export const ProgressSpinner = () => (
-  <ProgressSpinnerContainer>
+  <ProgressSpinnerContainer className="gameDeals-progressbar">
     <ProgressSpinnerBox>
       <CircularProgressSpinner />
     </ProgressSpinnerBox>

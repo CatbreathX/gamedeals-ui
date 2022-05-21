@@ -23,7 +23,7 @@
     "Atomics": "readonly",
     "SharedArrayBuffer": "readonly"
   },
-  "ignorePatterns": ["*.test.js"],
+  "ignorePatterns": ["*.test.js", "tests/e2e/**"],
   "parserOptions": {
     "ecmaVersion": 2022,
     "sourceType": "module",
@@ -121,7 +121,7 @@
       "extends": [
         "plugin:cypress/recommended"
       ],
-      "files": "tests/e2e/tests/**/*.spec.js"
+      "files": "tests/e2e/suites/**/*.js"
     }
   ]
 }
