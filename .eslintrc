@@ -23,7 +23,7 @@
     "Atomics": "readonly",
     "SharedArrayBuffer": "readonly"
   },
-  "ignorePatterns": ["*.test.js", "tests/e2e/**"],
+  "ignorePatterns": ["*.test.js", "tests/e2e/**", "dist/**"],
   "parserOptions": {
     "ecmaVersion": 2022,
     "sourceType": "module",

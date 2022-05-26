@@ -45,4 +45,5 @@ jobs:
               yarn install 
               yarn dev_build
               yarn start
-            wait-on: 'http://localhost:8080'
+            wait-on: 'http://localhost:3000'
+            command: yarn test:e2e
