@@ -22,17 +22,17 @@ describe('Search', () => {
   it('can click and navigate to external game page', () => {
     cy.visit('/');
 
-    cy.window().then((win) => {
-      cy.stub(win, 'open', url => {
+    cy.get(elements.dataRows).should(  'have.length.at.least', 5);
+
+    cy.window().then((window) => {
+      cy.stub(window, 'open', url => {
         expect(url).to.contain(CHEAPSHARK_REDIRECTION_URL)
       }).as("gameNewWindow")
     })
 
-    cy.get(elements.dataRows).should('have.length.at.least', 5);
 
     cy.get(`${elements.dataRows}:first-child()`).click();
-    cy.get('@gameNewWindow')
-      .should("be.called")
+    cy.get('@gameNewWindow').should("be.called")
   })
 
   it('can navigate to next and previous page of search results', () => {
@@ -41,18 +41,31 @@ describe('Search', () => {
     cy.get(elements.dataRows).should('have.length.at.least', 5);
 
     cy.get(elements.searchResults).invoke('text').then(($searchResults) => {
-      cy.wrap($searchResults).as('firstGameOnPageOne');
+      cy.wrap($searchResults).as('pageOneListOfGames');
     });
 
     cy.get(elements.nextPageButton).first().click();
+
+    cy.get(elements.searchResults).then(($searchResults) => {
+      cy.get('@pageOneListOfGames').should(($text) => {
+        expect($searchResults.text()).to.not.equal($text)
+      })
+    });
 
     cy.get(elements.pageNumber).then(($pageNumber) => {
       expect($pageNumber).to.have.text('Page: 2');
     });
 
     cy.get(elements.previousPageButton).first().click();
+
     cy.get(elements.pageNumber).then(($pageNumber) => {
       expect($pageNumber).to.have.text('Page: 1');
+    });
+
+    cy.get(elements.searchResults).then(($searchResults) => {
+      cy.get('@pageOneListOfGames').should(($text) => {
+        expect($searchResults.text()).to.equal($text)
+      })
     });
   });
 
