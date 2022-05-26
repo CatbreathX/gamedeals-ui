@@ -6,8 +6,8 @@
     "build": "webpack --config webpack.prod.config.js",
     "dev_build": "webpack --config webpack.dev.config.js",
     "start": "webpack serve --config webpack.dev.config.js",
-    "test": "jest",
-    "e2e": "cypress run --config-file tests/e2e/cypress.json",
+    "test:unit": "jest",
+    "test:e2e": "cypress run --config-file tests/e2e/cypress.json",
     "lint": "eslint .",
     "prepare": "husky install && npx husky set .husky/pre-commit \"yarn lint --fix\""
   },

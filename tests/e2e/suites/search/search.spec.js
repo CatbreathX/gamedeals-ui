@@ -11,12 +11,29 @@ const elements = {
 };
 
 const PAGE_SIZE = 60;
+const CHEAPSHARK_REDIRECTION_URL = 'https://www.cheapshark.com/redirect?dealID='
 
 describe('Search', () => {
   it('can perform default search', () => {
     cy.visit('/');
     cy.get(elements.dataRows).should('have.length.at.least', 5);
   });
+
+  it('can click and navigate to external game page', () => {
+    cy.visit('/');
+
+    cy.window().then((win) => {
+      cy.stub(win, 'open', url => {
+        expect(url).to.contain(CHEAPSHARK_REDIRECTION_URL)
+      }).as("gameNewWindow")
+    })
+
+    cy.get(elements.dataRows).should('have.length.at.least', 5);
+
+    cy.get(`${elements.dataRows}:first-child()`).click();
+    cy.get('@gameNewWindow')
+      .should("be.called")
+  })
 
   it('can navigate to next and previous page of search results', () => {
     cy.visit('/');
