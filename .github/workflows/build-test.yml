@@ -40,10 +40,11 @@ jobs:
         - name: Cypress run
           uses: cypress-io/github-action@v2
           with:
-            node-version: ${{ matrix.node-version }}
+            browser: chrome
+            headless: true
+            project: tests/e2e
             start: |
               yarn install 
               yarn dev_build
               yarn start
             wait-on: 'http://localhost:3000'
-            command: yarn test:e2e
