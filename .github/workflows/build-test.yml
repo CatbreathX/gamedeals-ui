@@ -27,3 +27,22 @@ jobs:
     - run: yarn dev_build
     - run: yarn test:unit
 
+  cypress-run:
+    strategy:
+      matrix:
+        node-version: [ 16.4.2 ]
+        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
+
+    runs-on: ubuntu-latest
+    steps:
+        - name: Checkout
+          uses: actions/checkout@v2
+        - name: Cypress run
+          uses: cypress-io/github-action@v2
+          with:
+            node-version: ${{ matrix.node-version }}
+            start: |
+              yarn install 
+              yarn dev_build
+              yarn run
+            wait-on: 'http://localhost:8080'
