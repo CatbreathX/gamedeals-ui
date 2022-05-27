@@ -10,37 +10,37 @@ on:
 
 jobs:
   build-and-test:
+    name: Build and Test
     runs-on: ubuntu-latest
-
     steps:
-    - uses: actions/checkout@v3
+      - uses: actions/checkout@v3
 
-    - name: Use Node.js 16.4.2
-      uses: actions/setup-node@v3
-      with:
-        node-version-file: '.nvmrc'
+      - name: Use Node.js 16.4.2
+        uses: actions/setup-node@v3
+        with:
+          node-version-file: '.nvmrc'
 
-    - name: Node Version
-    - run: node -v
+      - name: Node Version
+        run: node -v
 
-    - name: Install dependencies
-      run: yarn install
+      - name: Install dependencies
+        run: yarn install
 
-    - name: Run linter
-      run: yarn lint
+      - name: Run linter
+        run: yarn lint
 
-    - name: Build app
-      run: yarn test:unit
+      - name: Build app
+        run: yarn test:unit
 
-    - name: Run Unit tests
-      run: yarn test:unit
+      - name: Run Unit tests
+        run: yarn test:unit
 
-    - name: Run e2e tests
-      uses: cypress-io/github-action@v2
-      with:
-        browser: chrome
-        headless: true
-        project: tests/e2e
-        start: yarn start
-        wait-on: 'http://localhost:3000'
+      - name: Run e2e tests
+        uses: cypress-io/github-action@v2
+        with:
+          browser: chrome
+          headless: true
+          project: tests/e2e
+          start: yarn start
+          wait-on: 'http://localhost:3000'
 
