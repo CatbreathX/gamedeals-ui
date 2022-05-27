@@ -27,11 +27,25 @@ To start dev server:
 Served on http://localhost:3000
 
 
-## Test
+## Unit Tests
 
-Run all tests:
+Run Unit tests
 
-`yarn test`
+`yarn tests:unit`
+
+## e2e tests
+
+First start the dev server:
+
+```
+yarn start
+```
+
+In another terminal, run the e2e tests:
+
+```
+yarn test:e2e
+```
 
 
 ## Git Precommit hooks
