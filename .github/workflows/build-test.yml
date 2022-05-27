@@ -9,40 +9,38 @@ on:
     branches: [ master ]
 
 jobs:
-  test:
+  build-and-test:
     runs-on: ubuntu-latest
-
-    strategy:
-      matrix:
-        node-version: [16.4.2]
-        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
 
     steps:
     - uses: actions/checkout@v3
-    - name: Use Node.js ${{ matrix.node-version }}
+
+    - name: Use Node.js 16.4.2
       uses: actions/setup-node@v3
       with:
-        node-version: ${{ matrix.node-version }}
-    - run: yarn install
-    - run: yarn dev_build
-    - run: yarn test:unit
+        node-version-file: '.nvmrc'
 
-  cypress-run:
-    strategy:
-      matrix:
-        node-version: [ 16.4.2 ]
-        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
+    - name: Node Version
+    - run: node -v
 
-    runs-on: ubuntu-latest
-    steps:
-        - name: Checkout
-          uses: actions/checkout@v2
-        - name: Cypress run
-          uses: cypress-io/github-action@v2
-          with:
-            browser: chrome
-            headless: true
-            project: tests/e2e
-            start: |
-              yarn start
-            wait-on: 'http://localhost:3000'
+    - name: Install dependencies
+      run: yarn install
+
+    - name: Run linter
+      run: yarn lint
+
+    - name: Build app
+      run: yarn test:unit
+
+    - name: Run Unit tests
+      run: yarn test:unit
+
+    - name: Run e2e tests
+      uses: cypress-io/github-action@v2
+      with:
+        browser: chrome
+        headless: true
+        project: tests/e2e
+        start: yarn start
+        wait-on: 'http://localhost:3000'
+
