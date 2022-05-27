@@ -7,3 +7,10 @@ updates:
     commit-message:
       prefix: "dependabot"
     open-pull-requests-limit: 5
+    ignore:
+      - dependency-name: '@testing-library*'
+        update-types: ["version-update:semver-major"]
+      - dependency-name: 'react'
+        update-types: ["version-update:semver-major"]
+      - dependency-name: 'react-dom'
+        update-types: ["version-update:semver-major"]
