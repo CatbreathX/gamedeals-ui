@@ -1,7 +1,6 @@
 const elements = {
   searchResults: 'table tbody',
   dataRows: 'table tbody tr',
-  firstDataCell: 'table tbody tr td:first',
   nextPageButton: 'button[aria-label="Goto next page"]',
   pageNumber: '[aria-label="Page Number"]:first',
   previousPageButton: 'button[aria-label="Goto previous page"]',
