@@ -12,9 +12,10 @@ module.exports = {
   setupFilesAfterEnv: ['<rootDir>/tests/unit/setupTests.js'],
   testEnvironment: 'jsdom',
   testMatch: [
-    '**/?(*.)+(test).js?(x)',
+    '**/src/**/*.test.js',
   ],
   testPathIgnorePatterns: [
     '/node_modules/',
+    '/tests/e2e/',
   ],
 };

@@ -23,7 +23,7 @@
     "Atomics": "readonly",
     "SharedArrayBuffer": "readonly"
   },
-  "ignorePatterns": ["*.test.js"],
+  "ignorePatterns": ["*.test.js", "tests/e2e/**", "dist/**"],
   "parserOptions": {
     "ecmaVersion": 2022,
     "sourceType": "module",
@@ -105,20 +105,23 @@
   },
   "overrides": [
     {
-      "env": {
-        "jest": true
-      },
       "extends": [
         "plugin:jest/recommended",
         "plugin:jest/style",
         "plugin:jest-dom/recommended",
         "plugin:testing-library/react"
       ],
-      "files": "**/*.test.js",
+      "files": "src/**/*.test.js",
       "plugins": [
         "jest",
         "testing-library"
       ]
+    },
+    {
+      "extends": [
+        "plugin:cypress/recommended"
+      ],
+      "files": "tests/e2e/suites/**/*.js"
     }
   ]
 }

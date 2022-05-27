@@ -6,3 +6,4 @@ node_modules/
 /.yarn/
 .husky
 /yarn-error.log
+/tests/e2e/videos/**
