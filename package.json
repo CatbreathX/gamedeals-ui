@@ -31,7 +31,7 @@
     "react-redux": "^7.2.3",
     "react-router-dom": "^6.2.1",
     "redux-devtools": "^3.7.0",
-    "spinners-react": "^1.0.4"
+    "spinners-react": "^1.0.7"
   },
   "devDependencies": {
     "@babel/cli": "^7.17.0",
