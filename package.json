@@ -71,7 +71,7 @@
     "husky": "^8.0.1",
     "jest": "^27.5.1",
     "less": "^4.1.1",
-    "less-loader": "^10.0.1",
+    "less-loader": "^11.0.0",
     "msw": "^0.38.1",
     "style-loader": "^3.0.0",
     "terser-webpack-plugin": "^5.3.1",
