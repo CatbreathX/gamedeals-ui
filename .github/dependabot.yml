@@ -5,4 +5,5 @@ updates:
     schedule:
       interval: "daily"
     commit-message:
-      prefix: "yarn"
+      prefix: "dependabot"
+    open-pull-requests-limit: 1
