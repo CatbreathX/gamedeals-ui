@@ -6,10 +6,11 @@ import { useGetStoresQuery } from 'services/gamedealapi';
 export const StoreFilter = () => {
   const { control } = useFormContext();
 
+  const r = useGetStoresQuery();
   const {
     data,
     isSuccess,
-  } = useGetStoresQuery();
+  } = r;
 
   if (!isSuccess) return null;
 

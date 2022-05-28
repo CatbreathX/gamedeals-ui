@@ -13,16 +13,16 @@ export const gameDealApi = createApi({
         pageNumber,
         pageSize,
         storeId,
-        title,
-        exactTitle,
+        gameTitle,
+        exactGameTitle,
         onSale,
       }) => {
         const query = {
           pageNumber,
           pageSize,
           storeId,
-          title,
-          exactTitle,
+          gameTitle,
+          exactGameTitle,
           onSale,
         };
         const normalizedQuery = normalizeQueryParameters(query);
@@ -48,17 +48,17 @@ const normalizeQueryParameters = ({
   pageNumber,
   pageSize,
   storeId,
-  exactTitle,
-  title,
+  exactGameTitle,
+  gameTitle,
   onSale,
 }) => {
   let normalizedPageNumber = pageNumber;
   let normalizedExactTitle;
   let normalizedOnSale;
 
-  if (title?.length) {
+  if (gameTitle?.length) {
     normalizedPageNumber = undefined;
-    normalizedExactTitle = exactTitle ? 1 : 0;
+    normalizedExactTitle = exactGameTitle ? 1 : 0;
   }
 
   if (onSale) {
@@ -71,7 +71,7 @@ const normalizeQueryParameters = ({
     pageNumber: normalizedPageNumber,
     pageSize,
     storeID: storeId,
-    title,
+    title: gameTitle,
   };
   return normalizedQueryParameters;
 };

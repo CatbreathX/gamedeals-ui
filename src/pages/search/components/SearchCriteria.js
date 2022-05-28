@@ -3,7 +3,7 @@ import { Form } from 'common/elements/Form';
 import { H1 } from 'common/elements/H1';
 import { RatingFilter } from 'pages/search/components/RatingFilter';
 import { StoreFilter } from 'pages/search/components/StoreFilter';
-import { TitleFilter } from 'pages/search/components/TitleFilter';
+import { GameTitleFilter } from 'pages/search/components/GameTitleFilter';
 import { FilterActions, FilterContainer } from 'pages/search/layout/FilterContainer';
 import PropTypes from 'prop-types';
 import { FormProvider, useForm } from 'react-hook-form';
@@ -18,7 +18,7 @@ export const SearchCriteria = ({ handleFormSubmission }) => {
 
   const resetForm = () => {
     reset({
-      title: '', store: '', gameRatingFilter: '', exactTitle: 'false',
+      gameTitle: '', store: '', gameRatingFilter: '', exactGameTitle: 'false',
     });
   };
 
@@ -29,9 +29,8 @@ export const SearchCriteria = ({ handleFormSubmission }) => {
 
         <FilterContainer>
           <StoreFilter />
-
           <RatingFilter />
-          <TitleFilter />
+          <GameTitleFilter />
         </FilterContainer>
         <FilterActions>
           <Button type="submit">Search</Button>
