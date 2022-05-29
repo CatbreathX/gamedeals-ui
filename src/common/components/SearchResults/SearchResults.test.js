@@ -2,7 +2,7 @@ import '@testing-library/jest-dom';
 import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { SearchResults } from 'common/components/SearchResults/SearchResults';
-import { renderComponent } from 'unit/componentRenders';
+import { renderComponent } from 'unit/componentRenderers';
 
 const noop = () => {
 };

@@ -3,8 +3,9 @@ import userEvent from '@testing-library/user-event';
 import { SearchCriteria } from 'pages/search/components/SearchCriteria';
 import React from 'react';
 import { gameDealApi } from 'services/gamedealapi';
-import { renderWithStore } from 'unit/componentRenders';
+import { renderWithStore } from 'unit/componentRenderers';
 import { setupApiStore } from 'unit/reduxStore';
+import { clearApiCaches } from 'unit/utils';
 
 describe('SearchCriteria', () => {
 
@@ -13,19 +14,20 @@ describe('SearchCriteria', () => {
 
   beforeEach( () => {
     jest.resetAllMocks();
-    mockStore = setupApiStore(gameDealApi);
-    mockHandleFormSubmission = jest.fn();
-
-    renderWithStore(<SearchCriteria handleFormSubmission={mockHandleFormSubmission} />,
-      mockStore.store,
-    );
   });
 
   afterEach(() => {
-    mockStore.store.dispatch(gameDealApi.util.resetApiState());
+    clearApiCaches(mockStore);
   });
 
+  test('should render correctly', () => {
+    const {asFragment} = renderComponentUnderTest();
+    expect(asFragment()).toMatchSnapshot();
+  })
+
+
   test('can populate and search all filters', async () => {
+    renderComponentUnderTest();
     await populateSearchCriteria();
 
     const searchButton = screen.getByRole('button', { name: /search/i });
@@ -44,6 +46,7 @@ describe('SearchCriteria', () => {
   });
 
   test('when user clicks Clear button, all fields will be cleared', async() => {
+    renderComponentUnderTest();
     await populateSearchCriteria();
 
     const searchButton = screen.getByRole('button', { name: /clear/i });
@@ -55,6 +58,14 @@ describe('SearchCriteria', () => {
     expect(screen.getByRole('checkbox', {  name: /exact match/i})).not.toBeChecked()
   });
 
+  function renderComponentUnderTest() {
+    mockStore = setupApiStore(gameDealApi);
+    mockHandleFormSubmission = jest.fn();
+
+    return renderWithStore(<SearchCriteria handleFormSubmission={mockHandleFormSubmission} />,
+      mockStore.store,
+    );
+  }
 });
 
 async function populateSearchCriteria() {
@@ -71,3 +82,4 @@ async function populateSearchCriteria() {
   const exactMatch = screen.getByRole('checkbox', { name: /exact match/i });
   userEvent.click(exactMatch);
 }
+

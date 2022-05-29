@@ -2,22 +2,30 @@ import { screen, waitForElementToBeRemoved, within } from '@testing-library/reac
 import userEvent from '@testing-library/user-event';
 import { Search } from 'pages/search/index';
 import { gameDealApi } from 'services/gamedealapi';
-import { renderWithStore } from 'unit/componentRenders';
+import { renderWithStore } from 'unit/componentRenderers';
 import { setupApiStore } from 'unit/reduxStore';
+import { clearApiCaches } from 'unit/utils';
 
 describe('index', () => {
   let mockStore;
 
-  beforeEach( () => {
-    mockStore = setupApiStore(gameDealApi);
-    renderWithStore(<Search />, mockStore.store);
+  afterEach(() => {
+    clearApiCaches(mockStore);
   });
 
-  afterEach(() => {
-    mockStore.store.dispatch(gameDealApi.util.resetApiState());
-  });
+  test('should render correctly with no data', () => {
+    const {asFragment} = renderComponentUnderTest();
+    expect(asFragment()).toMatchSnapshot();
+  })
+
+  test('should display spinner when waiting for data', () => {
+    renderComponentUnderTest();
+    expect(screen.getByRole('progressbar')).toBeInTheDocument();
+  })
 
   test('should render headers', async () => {
+    renderComponentUnderTest();
+
     const expectedHeaders = ['Game', 'Store', 'Sale Price', 'Normal Price', 'Metacritic Score', 'Steam Rating'];
     const actualHeaders = await screen.findAllByRole('columnheader');
 
@@ -29,6 +37,8 @@ describe('index', () => {
   });
 
   test('should populate search results table', async () => {
+    renderComponentUnderTest();
+
     const actualRows = await screen.findAllByRole('row');
     expect(actualRows).toHaveLength(61);
 
@@ -43,6 +53,8 @@ describe('index', () => {
   });
 
   test('should render pagination correctly', async () => {
+    renderComponentUnderTest();
+
     const paginations = await screen.findAllByRole('navigation');
     expect(paginations).toHaveLength(2);
 
@@ -61,6 +73,8 @@ describe('index', () => {
   });
 
   test('should be able to filter on store', async () => {
+    renderComponentUnderTest();
+
     const filterStore = await screen.findByLabelText('Filter Store');
     userEvent.click(filterStore);
     userEvent.type(filterStore, 'Steam{arrowdown}{enter}');
@@ -74,9 +88,11 @@ describe('index', () => {
   });
 
   test('should be able to goto next page', async () => {
-    const paginations = await screen.findAllByRole('navigation');
-    const pagination = paginations[0];
-    const nextPageButton = within(pagination).getByRole('button', { name: 'Goto next page' });
+    renderComponentUnderTest();
+
+    const paginationSections = await screen.findAllByRole('navigation');
+    const paginationSection = paginationSections[0];
+    const nextPageButton = within(paginationSection).getByRole('button', { name: 'Goto next page' });
     userEvent.click(nextPageButton);
 
     const progressBar = await screen.findByRole('progressbar');
@@ -98,13 +114,12 @@ describe('index', () => {
     expect(nextPageButton).toBeInTheDocument();
     expect(nextPageButton).toBeDisabled();
 
-    const previousPage = within(pagination).getByRole('button', { name: /goto previous page/i });
+    const previousPage = within(paginationSection).getByRole('button', { name: /goto previous page/i });
     expect(previousPage).toBeEnabled();
   });
 
-  test('should reset all filters', () => {
-    expect(1).toBe(1);
-    // todo: implement test.
-    // todo: exact match
-  });
+  const renderComponentUnderTest = () => {
+    mockStore = setupApiStore(gameDealApi);
+    return renderWithStore(<Search />, mockStore.store);
+  };
 });

@@ -3,16 +3,22 @@ import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { ReactHookFormSelect } from 'common/components/inputs/ReactHookFormSelect';
 import { FormProvider, useForm } from 'react-hook-form';
-import { renderComponent } from 'unit/componentRenders';
+import { renderComponent } from 'unit/componentRenderers';
 
 describe('ReactHookFormSelect', () => {
+
+  test('should render correctly', () => {
+    const {asFragment} = renderComponentUnderTest();
+    expect(asFragment()).toMatchSnapshot();
+  })
+
   test('should display correct label', () => {
-    renderComponentWithValue();
+    renderComponentUnderTest();
     expect(screen.getByLabelText('Select Unit Test')).toBeInTheDocument();
   });
 
   test('should render all items in combo box', () => {
-    renderComponentWithValue();
+    renderComponentUnderTest();
 
     const button = screen.getByRole('button');
     userEvent.type(button, '{arrowdown}');
@@ -26,12 +32,12 @@ describe('ReactHookFormSelect', () => {
   });
 
   test('should automatically the default item', () => {
-    renderComponentWithValue('2');
+    renderComponentUnderTest('2');
     expect(screen.getByRole('button')).toHaveTextContent('Two');
   });
 
   test('should update text input with selected value', () => {
-    renderComponentWithValue();
+    renderComponentUnderTest();
 
     const button = screen.getByRole('button');
     userEvent.type(button, '{arrowdown}');
@@ -40,8 +46,8 @@ describe('ReactHookFormSelect', () => {
   });
 });
 
-const renderComponentWithValue = (defaultValue = '') => {
-  renderComponent(
+const renderComponentUnderTest = (defaultValue = '') => {
+  return renderComponent(
     <Select defaultValue={defaultValue} />,
   );
 };

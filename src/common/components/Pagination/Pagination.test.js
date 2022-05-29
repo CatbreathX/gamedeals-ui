@@ -2,9 +2,15 @@ import '@testing-library/jest-dom';
 import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { Pagination } from 'common/components/Pagination/Pagination';
-import { renderComponent } from 'unit/componentRenders';
+import { renderComponent } from 'unit/componentRenderers';
 
 describe('Pagination', () => {
+
+  test('should render correctly', () => {
+    const {asFragment} = renderPaginationComponent(1);
+    expect(asFragment()).toMatchSnapshot();
+  })
+
   test('should disable previous page when on first page', () => {
     renderPaginationComponent({ pageNumber: 1 });
     expect(screen.getByRole('button', { name: 'Goto previous page' })).toBeDisabled();
@@ -87,7 +93,7 @@ const renderPaginationComponent = ({
   pageSize = 25,
   totalNumberOfPages = 99,
 } = {}) => {
-  renderComponent(
+  return renderComponent(
     <Pagination
       numberOfRows={numberOfRows}
       onNextPage={onNextPage}

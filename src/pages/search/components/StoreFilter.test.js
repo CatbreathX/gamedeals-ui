@@ -5,8 +5,9 @@ import { rest } from 'msw';
 import { StoreFilter } from 'pages/search/components/StoreFilter';
 import { FormProvider, useForm } from 'react-hook-form';
 import { gameDealApi } from 'services/gamedealapi';
-import { renderWithStore } from 'unit/componentRenders';
+import { renderWithStore } from 'unit/componentRenderers';
 import { setupApiStore } from 'unit/reduxStore';
+import { clearApiCaches } from 'unit/utils';
 
 describe('StoreFilter', () => {
   let mockStore;
@@ -17,7 +18,7 @@ describe('StoreFilter', () => {
   });
 
   afterEach(() => {
-    mockStore.store.dispatch(gameDealApi.util.resetApiState());
+    clearApiCaches(mockStore);
   });
 
   test('should mount correctly', async () => {
