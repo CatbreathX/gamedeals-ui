@@ -26,7 +26,7 @@ describe('Search', () => {
     cy.window().then((window) => {
       cy.stub(window, 'open', url => {
         expect(url).to.contain(CHEAPSHARK_REDIRECTION_URL)
-      }).as("@ameNewWindow")
+      }).as("gameNewWindow")
     })
 
 
