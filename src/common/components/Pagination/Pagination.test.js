@@ -1,26 +1,27 @@
 import '@testing-library/jest-dom';
-import { render, screen } from '@testing-library/react';
+import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { Pagination } from 'common/components/Pagination/Pagination';
+import { renderComponent } from 'unit/componentRenders';
 
 describe('Pagination', () => {
   test('should disable previous page when on first page', () => {
-    renderComponent({ pageNumber: 1 });
+    renderPaginationComponent({ pageNumber: 1 });
     expect(screen.getByRole('button', { name: 'Goto previous page' })).toBeDisabled();
   });
 
   test('should render enable next page button when more pages of data', () => {
-    renderComponent();
+    renderPaginationComponent();
     expect(screen.getByRole('button', { name: 'Goto next page' })).toBeEnabled();
   });
 
   test('should disable next page button when on last page', () => {
-    renderComponent({ totalNumberOfPages: 1 });
+    renderPaginationComponent({ totalNumberOfPages: 1 });
     expect(screen.getByRole('button', { name: 'Goto next page' })).toBeDisabled();
   });
 
   test('should enable previous and next page buttons when previous and next pages exist', () => {
-    renderComponent({
+    renderPaginationComponent({
       pageNumber: 2,
       totalNumberOfPages: 3,
     });
@@ -31,7 +32,7 @@ describe('Pagination', () => {
 
   test('should invoke nextPage handler when user clicks on next page button', () => {
     const mockHandler = jest.fn();
-    renderComponent({
+    renderPaginationComponent({
       totalNumberOfPages: 2,
       onNextPage: mockHandler,
     });
@@ -42,7 +43,7 @@ describe('Pagination', () => {
 
   test('should invoke previousPage handler when user clicks on previous page button', () => {
     const mockHandler = jest.fn();
-    renderComponent({
+    renderPaginationComponent({
       pageNumber: 2,
       totalNumberOfPages: 2,
       onPreviousPage: mockHandler,
@@ -54,7 +55,7 @@ describe('Pagination', () => {
   });
 
   test('should display correct page number', () => {
-    renderComponent({
+    renderPaginationComponent({
       pageNumber: 1,
       totalNumberOfPages: 1,
     });
@@ -63,7 +64,7 @@ describe('Pagination', () => {
   });
 
   test('should display correct start to end row numbers', () => {
-    renderComponent({
+    renderPaginationComponent({
       pageNumber: 1,
       totalNumberOfPages: 1,
       numberOfRows: 25,
@@ -77,7 +78,7 @@ describe('Pagination', () => {
 const noop = () => {
 };
 
-const renderComponent = ({
+const renderPaginationComponent = ({
   numberOfRows = 25,
   onNextPage = noop,
   onPageSizeChange = noop,
@@ -86,7 +87,7 @@ const renderComponent = ({
   pageSize = 25,
   totalNumberOfPages = 99,
 } = {}) => {
-  render(
+  renderComponent(
     <Pagination
       numberOfRows={numberOfRows}
       onNextPage={onNextPage}

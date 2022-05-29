@@ -1,11 +1,11 @@
-import { render, screen, waitFor } from '@testing-library/react';
+import { screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { server } from 'mocks/api/server';
 import { rest } from 'msw';
 import { StoreFilter } from 'pages/search/components/StoreFilter';
 import { FormProvider, useForm } from 'react-hook-form';
-import { Provider } from 'react-redux';
 import { gameDealApi } from 'services/gamedealapi';
+import { renderWithStore } from 'unit/componentRenders';
 import { setupApiStore } from 'unit/reduxStore';
 
 describe('StoreFilter', () => {
@@ -21,12 +21,12 @@ describe('StoreFilter', () => {
   });
 
   test('should mount correctly', async () => {
-    await renderComponent(mockStore);
+    renderComponent(mockStore);
     expect(await screen.findByRole('combobox', { name: 'Filter Store' })).toBeInTheDocument();
   });
 
   test('should contain all active stores', async () => {
-    await renderComponent(mockStore);
+    renderComponent(mockStore);
 
     const inputText = await screen.findByRole('combobox');
     userEvent.type(inputText, '{arrowdown}');
@@ -38,7 +38,7 @@ describe('StoreFilter', () => {
 
   test('should be able to select an item', async () => {
     const mockFormSubmitted = jest.fn();
-    await renderComponent(mockStore, mockFormSubmitted);
+    renderComponent(mockStore, mockFormSubmitted);
 
     const inputText = await screen.findByRole('combobox');
     userEvent.type(inputText, '{arrowdown}{arrowdown}{enter}');
@@ -52,13 +52,8 @@ describe('StoreFilter', () => {
   });
 });
 
-async function renderComponent(mockStore, formSubmitted) {
-  await render(
-    <Provider store={mockStore.store}>
-      <ComponentWrapper formSubmitted={formSubmitted} />
-    </Provider>,
-  );
-}
+const renderComponent = (mockStore, formSubmitted = jest.fn()) => renderWithStore(<ComponentWrapper
+  formSubmitted={formSubmitted} />, mockStore.store);
 
 // eslint-disable-next-line react/prop-types
 const ComponentWrapper = ({ formSubmitted }) => {

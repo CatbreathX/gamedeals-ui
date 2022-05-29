@@ -1,7 +1,8 @@
 import '@testing-library/jest-dom';
-import { render, screen } from '@testing-library/react';
+import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { SearchResults } from 'common/components/SearchResults/SearchResults';
+import { renderComponent } from 'unit/componentRenders';
 
 const noop = () => {
 };
@@ -36,7 +37,10 @@ describe('Search Results', () => {
 
   test('should populate one row of data correctly', () => {
     const dataset = createTableDataSet();
-    renderSearchResults({ dataset: dataset.data, isSuccess: true });
+    renderSearchResults({
+      dataset: dataset.data,
+      isSuccess: true,
+    });
     const { data } = dataset;
     expect(screen.getByRole('cell', { name: data[0].game })).toBeInTheDocument();
     expect(screen.getByRole('cell', { name: data[0].store })).toBeInTheDocument();
@@ -56,7 +60,11 @@ describe('Search Results', () => {
     const mockDataRowClicked = jest.fn();
     const dataset = createTableDataSet();
     renderSearchResults(
-      { dataset: dataset.data, dataRowClicked: mockDataRowClicked, isSuccess: true },
+      {
+        dataset: dataset.data,
+        dataRowClicked: mockDataRowClicked,
+        isSuccess: true,
+      },
     );
     const dataRows = screen.getAllByRole('row');
     userEvent.click(dataRows[2]);
@@ -72,7 +80,7 @@ const renderSearchResults = ({
   isSuccess = false,
   headerClicked = noop,
   dataRowClicked = noop,
-}) => render(<SearchResults
+}) => renderComponent(<SearchResults
   columns={[
     {
       header: HEADERS[0],

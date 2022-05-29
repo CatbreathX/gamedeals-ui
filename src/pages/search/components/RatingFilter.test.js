@@ -1,11 +1,14 @@
-import { render, screen } from '@testing-library/react';
+import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { RatingFilter } from 'pages/search/components/RatingFilter';
 import { FormProvider, useForm } from 'react-hook-form';
+import { renderComponent } from 'unit/componentRenders';
 
 describe('RatingFilter', () => {
   beforeEach(() => {
-    mountComponent();
+    renderComponent(
+      <Select defaultValue='' />
+    );
   });
 
   test('should display correct label', () => {
@@ -33,12 +36,6 @@ describe('RatingFilter', () => {
     expect(button).toHaveTextContent(ratingOptions[1]);
   });
 });
-
-const mountComponent = (defaultValue = '') => {
-  render(
-    <Select defaultValue={defaultValue} />,
-  );
-};
 
 // eslint-disable-next-line react/prop-types
 const Select = () => {

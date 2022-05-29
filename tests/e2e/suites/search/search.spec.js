@@ -26,12 +26,12 @@ describe('Search', () => {
     cy.window().then((window) => {
       cy.stub(window, 'open', url => {
         expect(url).to.contain(CHEAPSHARK_REDIRECTION_URL)
-      }).as("gameNewWindow")
+      }).as("@ameNewWindow")
     })
 
 
     cy.get(`${elements.dataRows}:first-child()`).click();
-    cy.get('@gameNewWindow').should("be.called")
+    cy.get('@gameNewWindow').should("be.called");
   })
 
   it('can navigate to next and previous page of search results', () => {

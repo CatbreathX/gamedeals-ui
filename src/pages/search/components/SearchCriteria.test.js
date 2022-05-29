@@ -3,7 +3,7 @@ import userEvent from '@testing-library/user-event';
 import { SearchCriteria } from 'pages/search/components/SearchCriteria';
 import React from 'react';
 import { gameDealApi } from 'services/gamedealapi';
-import { mountWithStore } from 'unit/mount';
+import { renderWithStore } from 'unit/componentRenders';
 import { setupApiStore } from 'unit/reduxStore';
 
 describe('SearchCriteria', () => {
@@ -11,12 +11,12 @@ describe('SearchCriteria', () => {
   let mockStore;
   let mockHandleFormSubmission;
 
-  beforeEach(async () => {
+  beforeEach( () => {
     jest.resetAllMocks();
     mockStore = setupApiStore(gameDealApi);
     mockHandleFormSubmission = jest.fn();
 
-    await mountWithStore(<SearchCriteria handleFormSubmission={mockHandleFormSubmission} />,
+    renderWithStore(<SearchCriteria handleFormSubmission={mockHandleFormSubmission} />,
       mockStore.store,
     );
   });

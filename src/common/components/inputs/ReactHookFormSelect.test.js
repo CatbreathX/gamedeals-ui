@@ -1,17 +1,18 @@
 import { MenuItem } from '@mui/material';
-import { render, screen } from '@testing-library/react';
+import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { ReactHookFormSelect } from 'common/components/inputs/ReactHookFormSelect';
 import { FormProvider, useForm } from 'react-hook-form';
+import { renderComponent } from 'unit/componentRenders';
 
 describe('ReactHookFormSelect', () => {
   test('should display correct label', () => {
-    mount();
+    renderComponentWithValue();
     expect(screen.getByLabelText('Select Unit Test')).toBeInTheDocument();
   });
 
   test('should render all items in combo box', () => {
-    mount();
+    renderComponentWithValue();
 
     const button = screen.getByRole('button');
     userEvent.type(button, '{arrowdown}');
@@ -25,12 +26,12 @@ describe('ReactHookFormSelect', () => {
   });
 
   test('should automatically the default item', () => {
-    mount('2');
+    renderComponentWithValue('2');
     expect(screen.getByRole('button')).toHaveTextContent('Two');
   });
 
   test('should update text input with selected value', () => {
-    mount();
+    renderComponentWithValue();
 
     const button = screen.getByRole('button');
     userEvent.type(button, '{arrowdown}');
@@ -39,8 +40,8 @@ describe('ReactHookFormSelect', () => {
   });
 });
 
-const mount = (defaultValue = '') => {
-  render(
+const renderComponentWithValue = (defaultValue = '') => {
+  renderComponent(
     <Select defaultValue={defaultValue} />,
   );
 };

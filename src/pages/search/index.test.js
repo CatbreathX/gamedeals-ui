@@ -2,15 +2,15 @@ import { screen, waitForElementToBeRemoved, within } from '@testing-library/reac
 import userEvent from '@testing-library/user-event';
 import { Search } from 'pages/search/index';
 import { gameDealApi } from 'services/gamedealapi';
-import { mountWithStore } from 'unit/mount';
+import { renderWithStore } from 'unit/componentRenders';
 import { setupApiStore } from 'unit/reduxStore';
 
 describe('index', () => {
   let mockStore;
 
-  beforeEach(async () => {
+  beforeEach( () => {
     mockStore = setupApiStore(gameDealApi);
-    await mountWithStore(<Search />, mockStore.store);
+    renderWithStore(<Search />, mockStore.store);
   });
 
   afterEach(() => {
