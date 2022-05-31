@@ -125,7 +125,7 @@ exports[`SearchCriteria should render correctly 1`] = `
             <input
               class="PrivateSwitchBase-input css-1m9pwf3"
               data-indeterminate="false"
-              name="exactTitle"
+              name="exactGameTitle"
               type="checkbox"
             />
             <svg

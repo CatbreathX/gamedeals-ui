@@ -35,7 +35,7 @@ describe('SearchCriteria', () => {
 
     await waitFor(() => {
       const params = {
-        'exactTitle': true,
+        'exactGameTitle': true,
         'gameRatingFilter': '50',
         'gameTitle': 'Elite Dangerous',
         'store': '1',

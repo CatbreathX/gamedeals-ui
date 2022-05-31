@@ -13,7 +13,7 @@ export const GameTitleFilter = () => {
         control={
           <Controller
             control={control}
-            name="exactTitle"
+            name="exactGameTitle"
             render={({ field }) => {
               const isChecked = field.value === true;
               return <Checkbox {...field} checked={isChecked} />;
