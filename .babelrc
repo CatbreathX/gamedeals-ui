@@ -22,7 +22,10 @@
         "corejs ": 3
       }
     ],
-    ["@emotion"],
+    ["@emotion", {
+      "sourceMap": true,
+      "autoLabel": "dev-only"
+    }],
     [
       "babel-plugin-root-import"
     ],
