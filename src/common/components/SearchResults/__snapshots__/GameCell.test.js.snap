@@ -7,9 +7,56 @@ Object {
     <div>
       <div>
         <div>
-          Elite Dangerous
-          :
-          10.00
+          <img
+            alt="Elite Dangerous"
+            src="https://BASE_IMAGE/game/1/image"
+          />
+        </div>
+        <div>
+          <span
+            class="game_cell_title"
+          >
+            Elite Dangerous
+          </span>
+          <span
+            class="game_cell_store"
+          >
+            Steam
+          </span>
+        </div>
+        <div>
+          <span
+            class="game_cell_normal-price"
+          >
+            29.99
+          </span>
+          <span
+            class="game_cell_sale-price"
+          >
+            5.99
+          </span>
+          <span
+            class="game_cell_price-saving"
+          >
+            24.00
+          </span>
+        </div>
+        <div>
+          <span
+            class="game_cell_metacritic-rating"
+          >
+            85
+          </span>
+          <span
+            class="game_cell_steam-rating"
+          >
+            Mostly Positive
+          </span>
+          <span
+            class="game_cell_deal-rating"
+          >
+            4.0
+          </span>
         </div>
       </div>
     </div>
@@ -17,9 +64,56 @@ Object {
   "container": <div>
     <div>
       <div>
-        Elite Dangerous
-        :
-        10.00
+        <img
+          alt="Elite Dangerous"
+          src="https://BASE_IMAGE/game/1/image"
+        />
+      </div>
+      <div>
+        <span
+          class="game_cell_title"
+        >
+          Elite Dangerous
+        </span>
+        <span
+          class="game_cell_store"
+        >
+          Steam
+        </span>
+      </div>
+      <div>
+        <span
+          class="game_cell_normal-price"
+        >
+          29.99
+        </span>
+        <span
+          class="game_cell_sale-price"
+        >
+          5.99
+        </span>
+        <span
+          class="game_cell_price-saving"
+        >
+          24.00
+        </span>
+      </div>
+      <div>
+        <span
+          class="game_cell_metacritic-rating"
+        >
+          85
+        </span>
+        <span
+          class="game_cell_steam-rating"
+        >
+          Mostly Positive
+        </span>
+        <span
+          class="game_cell_deal-rating"
+        >
+          4.0
+        </span>
       </div>
     </div>
   </div>,
