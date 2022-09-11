@@ -12,7 +12,7 @@ describe('SearchCriteria', () => {
   let mockStore;
   let mockHandleFormSubmission;
 
-  beforeEach( () => {
+  beforeEach(() => {
     jest.resetAllMocks();
   });
 
@@ -23,14 +23,14 @@ describe('SearchCriteria', () => {
   test('should render correctly', () => {
     const {asFragment} = renderComponentUnderTest();
     expect(asFragment()).toMatchSnapshot();
-  })
+  });
 
 
   test('can populate and search all filters', async () => {
     renderComponentUnderTest();
     await populateSearchCriteria();
 
-    const searchButton = screen.getByRole('button', { name: /search/i });
+    const searchButton = screen.getByRole('button', {name: /search/i});
     await userEvent.click(searchButton);
 
     await waitFor(() => {
@@ -45,17 +45,17 @@ describe('SearchCriteria', () => {
     });
   });
 
-  test('when user clicks Clear button, all fields will be cleared', async() => {
+  test('when user clicks Clear button, all fields will be cleared', async () => {
     renderComponentUnderTest();
     await populateSearchCriteria();
 
-    const searchButton = screen.getByRole('button', { name: /clear/i });
+    const searchButton = screen.getByRole('button', {name: /clear/i});
     await userEvent.click(searchButton);
 
-    expect(screen.getByRole('combobox', {  name: /filter store/i})).toHaveDisplayValue('')
-    expect(screen.getByRole('button', {  name: /rating/i}).textContent).toEqual('​')
-    expect(screen.getByRole('textbox', {  name: /game title/i})).toHaveDisplayValue('')
-    expect(screen.getByRole('checkbox', {  name: /exact match/i})).not.toBeChecked()
+    expect(screen.getByRole('combobox', {name: /filter store/i})).toHaveDisplayValue('');
+    expect(screen.getByRole('button', {name: /rating/i}).textContent).toEqual('​');
+    expect(screen.getByRole('textbox', {name: /game title/i})).toHaveDisplayValue('');
+    expect(screen.getByRole('checkbox', {name: /exact match/i})).not.toBeChecked();
   });
 
   function renderComponentUnderTest() {
@@ -69,17 +69,17 @@ describe('SearchCriteria', () => {
 });
 
 async function populateSearchCriteria() {
-  const storeFilter = await screen.findByRole('combobox', { name: /filter store/i });
+  const storeFilter = await screen.findByRole('combobox', {name: /filter store/i});
   userEvent.click(storeFilter);
   userEvent.type(storeFilter, 'Steam{arrowdown}{enter}');
 
-  const rating = screen.getByRole('button', { name: /rating/i });
+  const rating = screen.getByRole('button', {name: /rating/i});
   userEvent.type(rating, '5{enter}');
 
-  const gameTitle = screen.getByRole('textbox', { name: /game title/i });
+  const gameTitle = screen.getByRole('textbox', {name: /game title/i});
   userEvent.type(gameTitle, 'Elite Dangerous');
 
-  const exactMatch = screen.getByRole('checkbox', { name: /exact match/i });
+  const exactMatch = screen.getByRole('checkbox', {name: /exact match/i});
   userEvent.click(exactMatch);
 }
 

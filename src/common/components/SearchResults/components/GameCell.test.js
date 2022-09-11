@@ -1,4 +1,4 @@
-import { GameCell } from 'common/components/SearchResults/GameCell';
+import { GameCell } from 'common/components/SearchResults/components/GameCell';
 import React from 'react';
 import { renderComponent } from 'unit/componentRenderers';
 

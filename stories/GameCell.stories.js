@@ -1,4 +1,4 @@
-import { GameCell } from 'common/components/SearchResults/GameCell';
+import { GameCell } from 'common/components/SearchResults/components/GameCell';
 
 export default {
   title: 'Cell',
